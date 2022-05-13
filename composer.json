@@ -1,0 +1,35 @@
+{
+  "name": "bingcool/jobfy",
+  "description": "Jobfy is a cli Framework based on swoole extension and workerfy frame, for everyone use it easily!",
+  "keywords": [
+    "workerfy",
+    "swoole",
+    "jonfy",
+    "php",
+    "cli",
+    "console"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "authors": [
+    {
+      "name": "bingcool",
+      "email": "2437667702@qq.com",
+      "role": "cli multi worker process model of php"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "bingcool/workerfy" : ">=7.1.0"
+  },
+  "require-dev": {
+    "kwn/php-rdkafka-stubs": "@dev",
+    "swoole/ide-helper": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jobfy\\": "src/",
+      "Jobfy\\Daemon\\":"Daemon/"
+    }
+  }
+}

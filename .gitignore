@@ -1,0 +1,9 @@
+/vendor
+*.lock
+*.idea
+*.pid
+*.pipe
+*.log
+*.status
+*.ini
+*/runtime
