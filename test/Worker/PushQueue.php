@@ -1,5 +1,5 @@
 <?php
-namespace Jobfy\Daemon\Worker;
+namespace Jobfy\Test\Worker;
 
 use Common\Library\Cache\Redis;
 use Common\Library\Queues\Queue;

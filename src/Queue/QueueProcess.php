@@ -81,7 +81,6 @@ abstract class QueueProcess extends DaemonProcess
         $this->driver = $this->getArgs()['driver'] ?? $this->driver;
         $this->queue = $this->getQueueInstance();
         $this->monitorQueue();
-        $this->registerTickReboot($this->lifeTime);
     }
 
     /**

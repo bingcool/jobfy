@@ -20,6 +20,13 @@
   ],
   "minimum-stability": "dev",
   "require": {
+    "ext-pcntl" : "*",
+    "ext-posix" : "*",
+    "ext-json": "*",
+    "ext-sockets": "*",
+    "ext-redis": "*",
+    "ext-pdo": "*",
+    "ext-curl": "*",
     "bingcool/workerfy" : ">=7.1.0"
   },
   "require-dev": {
@@ -28,8 +35,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Jobfy\\": "src/",
-      "Jobfy\\Daemon\\":"Daemon/"
+      "Jobfy\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Jobfy\\Test\\": "test/"
     }
   }
 }

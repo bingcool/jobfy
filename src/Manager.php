@@ -20,6 +20,9 @@ class Manager extends ProcessManager
                 case 'worker_queue_conf':
                     $this->initWorkerQueueConf($workerConfItems);
                     break;
+                case 'worker_cron_conf':
+                    $this->initWorkerCronConf($workerConfItems);
+                    break;
                 case 'worker_kafka_conf':
                     $this->initWorkerKafkaConf($workerConfItems);
                     break;
@@ -49,6 +52,26 @@ class Manager extends ProcessManager
             $async = true;
             $args = $config['args'] ?? [];
             $args['alias_queue_name'] = $aliasQueueName;
+            $this->parseArgs($args, $config);
+            $extendData = $config['extend_data'] ?? [];
+            $enableCoroutine = true;
+            $this->addProcess($processName, $processClass, $processWorkerNum, $async, $args, $extendData, $enableCoroutine);
+        }
+    }
+
+    /**
+     * @param array $workerConfItems
+     */
+    protected function initWorkerCronConf(array $workerConfItems)
+    {
+        foreach($workerConfItems ?? [] as $cronKeyName => $config)
+        {
+            $processName = $config['process_name'];
+            $processClass = $config['handler'];
+            $processWorkerNum = $config['worker_num'] ?? 1;
+            $async = true;
+            $args = $config['args'] ?? [];
+            $args['cron_key_name'] = $cronKeyName;
             $this->parseArgs($args, $config);
             $extendData = $config['extend_data'] ?? [];
             $enableCoroutine = true;
