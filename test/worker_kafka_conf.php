@@ -1,6 +1,6 @@
 <?php
 
-// kafka 模式
+// kafka topic model
 return [
     // topic name
     [

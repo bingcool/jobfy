@@ -48,7 +48,6 @@ abstract class KafkaConsumer extends MqProcess
         $this->groupId    = $this->getArgs()['group_id'];
         $this->timeoutMs  = $this->getArgs()['timeout_ms'] ?? 3000;
         $this->consumer   = new Consumer($this->brokerList, $this->topicName);
-        // set group id
         $this->consumer->setGroupId($this->groupId);
         $this->consumer->setRebalanceCb(function (\RdKafka\KafkaConsumer $kafkaConsumer, $err, $partitions) {
             switch ($err) {

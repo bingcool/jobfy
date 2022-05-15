@@ -20,11 +20,11 @@ class Manager extends ProcessManager
                 $processName = $config['process_name'];
                 $processClass = $config['handler'];
                 $processWorkerNum = $config['worker_num'] ?? 1;
-                $async = true;
                 $args = $config['args'] ?? [];
                 $this->parseArgs($args, $config);
                 $extendData = $config['extend_data'] ?? [];
                 $enableCoroutine = true;
+                $async = true;
                 $this->addProcess($processName, $processClass, $processWorkerNum, $async, $args, $extendData, $enableCoroutine);
             }
         }

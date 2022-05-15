@@ -1,6 +1,6 @@
 <?php
 
-// 其他公共模式比如扫表
+// other common handle
 return [
     [
         'process_name' => 'worker-push-queue-data',
