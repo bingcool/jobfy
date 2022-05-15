@@ -20,6 +20,20 @@ if(file_exists($envFile)) {
 }
 defined('WORKERFY_ENV') or define('WORKERFY_ENV', $globalEnv);
 
+$workerConfScopeEnv = $options['global']['worker_conf_scope'] ?? '*';
+$workerConfScopeEnv = explode(',', $workerConfScopeEnv);
+
+$workerConf = require __DIR__.'/conf.php';
+
+$workerConfScope = [];
+if($workerConfScopeEnv[0] != '*') {
+    foreach ($workerConfScopeEnv as $confScope) {
+        $workerConfScope[$confScope] = $workerConf[$confScope];
+    }
+}else {
+    $workerConfScope = $workerConf;
+}
+
 include APP_ROOT . "/vendor/autoload.php";
 $configFilePath = __DIR__."/Config/config.php";
 // load config
