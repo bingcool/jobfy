@@ -21,7 +21,7 @@ abstract class CronLocalProcess extends CronProcess
     public function onInit()
     {
         parent::onInit();
-        $this->cronName = $this->getArgs()['cron_name'];
+        $this->cronName       = $this->getArgs()['cron_name'];
         $this->cronExpression = $this->getArgs()['cron_expression'];
     }
 

@@ -18,7 +18,7 @@ abstract class RedisQueue extends QueueProcess
     public function getQueueInstance()
     {
         $config = ConfigLoader::getInstance()->getConfig()[$this->driver];
-        $redis = new Redis();
+        $redis  = new Redis();
         $redis->connect(
             $config['host'],
             $config['port'],

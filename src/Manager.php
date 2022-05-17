@@ -17,14 +17,14 @@ class Manager extends ProcessManager
         {
             foreach($workerConfItems ?? [] as $config)
             {
-                $processName = $config['process_name'];
-                $processClass = $config['handler'];
+                $async            = true;
+                $enableCoroutine  = true;
+                $processName      = $config['process_name'];
+                $processClass     = $config['handler'];
                 $processWorkerNum = $config['worker_num'] ?? 1;
-                $args = $config['args'] ?? [];
+                $args             = $config['args'] ?? [];
                 $this->parseArgs($args, $config);
                 $extendData = $config['extend_data'] ?? [];
-                $enableCoroutine = true;
-                $async = true;
                 $this->addProcess($processName, $processClass, $processWorkerNum, $async, $args, $extendData, $enableCoroutine);
             }
         }
@@ -38,8 +38,8 @@ class Manager extends ProcessManager
      */
     protected function parseArgs(array &$args, array $config)
     {
-        $args['max_handle'] = $config['max_handle'] ?? 10000;
-        $args['life_time'] = $config['life_time'] ?? 3600;
+        $args['max_handle']              = $config['max_handle'] ?? 10000;
+        $args['life_time']               = $config['life_time'] ?? 3600;
         $args['limit_run_coroutine_num'] = $config['limit_run_coroutine_num'] ?? null;
     }
 }

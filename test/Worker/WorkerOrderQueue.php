@@ -6,6 +6,17 @@ use Jobfy\Queue\RedisQueue;
 class WorkerOrderQueue extends RedisQueue
 {
 
+    public function onInit()
+    {
+        parent::onInit();
+//        $linfo = new \Linfo\Linfo;
+//        /**
+//         * @var \Linfo\Os\Linux $parser
+//         */
+//        $parser = $linfo->getParser();
+//        var_dump($parser->getServices()); // and a whole lot more
+    }
+
     public function onAfterReboot()
     {
         var_dump(__FUNCTION__);
