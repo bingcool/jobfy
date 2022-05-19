@@ -44,6 +44,7 @@ abstract class RedisDelayQueue extends QueueProcess
             try {
                 if(!$this->checkCanContinueHandle())
                 {
+                    usleep(100000);
                     continue;
                 }
 

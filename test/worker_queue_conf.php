@@ -15,6 +15,7 @@ return
 
         // queue option
         'args' => [
+            'driver' => 'redis', // 对应config的配置项
             'queue_name' => 'worker-queue1',
             'dynamic_queue_create_backlog' => 3000, //队列达到500积压，则动态创建进程
             'dynamic_queue_destroy_backlog' => 20, //队列少于300积压，则销毁，这个值不设置，则表示是500
@@ -22,7 +23,6 @@ return
             'retry_num' => 2, // 重试次数
             'retry_delay_time' => 5, // 延迟5s后放回主队列重试
             'ttl' => 300, // 超过多少秒没有被消费，就抛弃，0代表永不抛弃
-            'driver' => 'redis', // 对应config的配置项
         ]
     ]
 ];

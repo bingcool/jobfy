@@ -44,6 +44,7 @@ abstract class RedisQueue extends QueueProcess
             try {
                 if(!$this->checkCanContinueHandle())
                 {
+                    usleep(100000);
                     continue;
                 }
                 $result = $this->queue->pop($timeOut = 0);

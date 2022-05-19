@@ -1,9 +1,9 @@
 <?php
 namespace Jobfy\Mq\Kafka;
 
+use RdKafka\Message;
 use Jobfy\Mq\MqProcess;
 use Common\Library\Kafka\Consumer;
-use RdKafka\Message;
 
 abstract class KafkaConsumer extends MqProcess
 {
@@ -49,18 +49,29 @@ abstract class KafkaConsumer extends MqProcess
         $this->timeoutMs  = $this->getArgs()['timeout_ms'] ?? 3000;
         $this->consumer   = new Consumer($this->brokerList, $this->topicName);
         $this->consumer->setGroupId($this->groupId);
-        $this->consumer->setRebalanceCb(function (\RdKafka\KafkaConsumer $kafkaConsumer, $err, $partitions) {
-            switch ($err) {
-                case RD_KAFKA_RESP_ERR__ASSIGN_PARTITIONS:
-                    $kafkaConsumer->assign($partitions);
-                    break;
-                case RD_KAFKA_RESP_ERR__REVOKE_PARTITIONS:
-                    $kafkaConsumer->assign(null);
-                    break;
-                default:
-                    throw new \Exception($err);
-            }
+        $this->consumer->setAssignPartitionsCallback(function (array $partitions) {
+            $this->setAssignPartitionsCallback($partitions);
         });
+        $this->consumer->setRevokePartitionsCallback(function (array $partitions) {
+            $this->setRevokePartitionsCallback($partitions);
+        });
+
+    }
+
+    /**
+     * @param array $partitions
+     */
+    protected function setAssignPartitionsCallback(array $partitions)
+    {
+
+    }
+
+    /**
+     * @param array $partitions
+     */
+    protected function setRevokePartitionsCallback(array $partitions)
+    {
+
     }
 
     /**
@@ -102,12 +113,15 @@ abstract class KafkaConsumer extends MqProcess
                             $this->handle($message);
                             break;
                         case RD_KAFKA_RESP_ERR__PARTITION_EOF:
-                            echo "No more messages; will wait for more";
+                            $msg = "【Warning-Kafka】Kafka no more messages, will wait for more";
+                            echo $msg;
+                            write_info($msg);
                             break;
                         case RD_KAFKA_RESP_ERR__TIMED_OUT:
+                            echo "Kafka Time Out\n";
                             break;
                         default:
-                            throw new \Exception($message->errstr(), $message->err);
+                            throw new \RdKafka\Exception($message->errstr(), $message->err);
                             break;
                     }
                 }
