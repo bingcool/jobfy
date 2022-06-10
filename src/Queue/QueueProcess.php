@@ -71,15 +71,15 @@ abstract class QueueProcess extends DaemonProcess
      */
     public function onInit()
     {
-        $this->queueName = static::PREFIX_KEY.$this->getArgs()['queue_name'];
-        $this->dynamicQueueCreateBacklog = $this->getArgs()['dynamic_queue_create_backlog'] ?? $this->dynamicQueueCreateBacklog;
+        $this->queueName                  = static::PREFIX_KEY . $this->getArgs()['queue_name'];
+        $this->dynamicQueueCreateBacklog  = $this->getArgs()['dynamic_queue_create_backlog'] ?? $this->dynamicQueueCreateBacklog;
         $this->dynamicQueueDestroyBacklog = $this->getArgs()['dynamic_queue_destroy_backlog'] ?? $this->dynamicQueueDestroyBacklog;
-        $this->dynamicQueueWorkerNum = $this->getArgs()['dynamic_queue_worker_num'] ?? $this->dynamicQueueWorkerNum;
-        $this->retryNum = $this->getArgs()['retry_num'] ?? $this->retryNum;
-        $this->retryDelayTime = $this->getArgs()['retry_delay_time'] ?? $this->retryDelayTime;
-        $this->ttl    = $this->getArgs()['ttl'] ?? $this->ttl;
-        $this->driver = $this->getArgs()['driver'] ?? $this->driver;
-        $this->queue  = $this->getQueueInstance();
+        $this->dynamicQueueWorkerNum      = $this->getArgs()['dynamic_queue_worker_num'] ?? $this->dynamicQueueWorkerNum;
+        $this->retryNum                   = $this->getArgs()['retry_num'] ?? $this->retryNum;
+        $this->retryDelayTime             = $this->getArgs()['retry_delay_time'] ?? $this->retryDelayTime;
+        $this->ttl                        = $this->getArgs()['ttl'] ?? $this->ttl;
+        $this->driver                     = $this->getArgs()['driver'] ?? $this->driver;
+        $this->queue                      = $this->getQueueInstance();
         $this->monitorQueue();
     }
 

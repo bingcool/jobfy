@@ -1,7 +1,9 @@
 <?php
 namespace Jobfy\Mq\Kafka;
 
-class KafkaProducer
+use Common\Library\Kafka\Producer;
+
+class KafkaProducer extends Producer
 {
 
 }
