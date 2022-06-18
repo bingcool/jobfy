@@ -5,7 +5,10 @@ return [
     'worker_queue_conf'  => require __DIR__ . '/worker_queue_conf.php',
 
     // cron 定时任务
-    'worker_cron_conf'   => require __DIR__ . '/worker_cron_conf.php',
+    'worker_local_cron_conf'   => require __DIR__ . '/worker_local_cron_conf.php',
+
+    // cron fork定时任务
+    'worker_fork_cron_conf'   => require __DIR__ . '/worker_fork_cron_conf.php',
 
     // kafka 模式
     'worker_kafka_mq_conf'  => require __DIR__ . '/worker_kafka_mq_conf.php',

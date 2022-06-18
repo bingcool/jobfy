@@ -13,6 +13,9 @@ $globalEnv = 'dev';
 $envFile = APP_ROOT . '/env.ini';
 if(file_exists($envFile)) {
     $options = parse_ini_file($envFile, true);
+    var_dump($options);
+    exit;
+
     $env = $options['global']['env'] ?? '';
     if($env) {
         $globalEnv = $env;
@@ -33,6 +36,8 @@ if($workerConfScopeEnv[0] != '*') {
 }else {
     $workerConfScope = $workerConf;
 }
+
+
 
 include APP_ROOT . "/vendor/autoload.php";
 $configFilePath = __DIR__."/Config/config.php";
