@@ -27,8 +27,7 @@
     "ext-redis": "*",
     "ext-pdo": "*",
     "ext-curl": "*",
-    "bingcool/workerfy" : ">=7.1.0",
-    "linfo/linfo": "dev-master"
+    "bingcool/workerfy" : ">=7.1.0"
   },
   "require-dev": {
     "kwn/php-rdkafka-stubs": "@dev",
