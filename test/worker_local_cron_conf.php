@@ -13,7 +13,7 @@ return [
         'extend_data' => [],
         'args' => [
             'cron_name' => 'cancel order', // 取消订单
-            'cron_expression' => '*/1 * * * *', // 分分钟执行一次
+            'cron_expression' => '*/1 * * * *', // 每分钟执行一次
         ],
     ]
 ];

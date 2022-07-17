@@ -16,7 +16,7 @@ return [
             'task' =>[
                 [
                     'cron_name' => 'send message', // 发送短信
-                    'cron_expression' => '*/1 * * * *', // 分分钟执行一次
+                    'cron_expression' => '*/1 * * * *', // 每分钟执行一次
                     'run_cli' => "php ".APP_ROOT."/test/Test/TestCommand.php" // fork执行的bin命令行
                 ]
             ]
